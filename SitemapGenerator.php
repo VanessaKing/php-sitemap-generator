@@ -77,14 +77,12 @@ class SitemapGenerator {
      * @access private
      */
     //private $searchEngines = array(
-    //    array("http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=USERID&url=",
-    //    "http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap="),
-          "http://www.google.com/webmasters/tools/ping?sitemap="
-    //    "http://submissions.ask.com/ping?sitemap=",
-    //    "http://www.bing.com/webmaster/ping.aspx?siteMap="
-    );
-    // vk edit Only want to submit sitemap to Google for now
-    
+        array("http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=USERID&url=",
+        "http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap="),
+        "http://www.google.com/webmasters/tools/ping?sitemap=",
+        "http://submissions.ask.com/ping?sitemap=",
+        "http://www.bing.com/webmaster/ping.aspx?siteMap="
+    );    
     /**
      * Array with urls
      * @var array of strings
