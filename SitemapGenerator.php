@@ -76,7 +76,7 @@ class SitemapGenerator {
      * @var array of strings
      * @access private
      */
-    //private $searchEngines = array(
+    private $searchEngines = array(
         array("http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=USERID&url=",
         "http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap="),
         "http://www.google.com/webmasters/tools/ping?sitemap=",
