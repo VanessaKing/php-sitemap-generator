@@ -42,11 +42,13 @@ class SitemapGenerator {
     /**
      * If true, two sitemap files (.xml and .xml.gz) will be created and added to robots.txt.
      * If true, .gz file will be submitted to search engines.
-     * If quantity of URLs will be bigger than 50.000, option will be ignored,
+     * If quantity of URLs will be bigger than 50,000, option will be ignored,
      * all sitemap files except sitemap index will be compressed.
      * @var bool
      * @access public
      */
+    // vk edit Changed 50.000 to 50,000
+    
     public $createGZipFile = false;
     /**
      * URL to Your site.
@@ -74,13 +76,15 @@ class SitemapGenerator {
      * @var array of strings
      * @access private
      */
-    private $searchEngines = array(
-        array("http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=USERID&url=",
-        "http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap="),
-        "http://www.google.com/webmasters/tools/ping?sitemap=",
-        "http://submissions.ask.com/ping?sitemap=",
-        "http://www.bing.com/webmaster/ping.aspx?siteMap="
+    //private $searchEngines = array(
+    //    array("http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=USERID&url=",
+    //    "http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap="),
+          "http://www.google.com/webmasters/tools/ping?sitemap="
+    //    "http://submissions.ask.com/ping?sitemap=",
+    //    "http://www.bing.com/webmaster/ping.aspx?siteMap="
     );
+    // vk edit Only want to submit sitemap to Google for now
+    
     /**
      * Array with urls
      * @var array of strings
@@ -131,7 +135,7 @@ class SitemapGenerator {
                 isset ($url[2]) ? $url[2] : null,
                 isset ($url[3]) ? $url[3] : null);
         }
-    }
+    }     
     /**
      * Use this to add single URL to sitemap.
      * @param string $url URL
@@ -146,9 +150,9 @@ class SitemapGenerator {
             throw new InvalidArgumentException("URL is mandatory. At least one argument should be given.");
         $urlLenght = extension_loaded('mbstring') ? mb_strlen($url) : strlen($url);
         if ($urlLenght > 2048)
-            throw new InvalidArgumentException("URL lenght can't be bigger than 2048 characters.
-                                                Note, that precise url length check is guaranteed only using mb_string extension.
-                                                Make sure Your server allow to use mbstring extension.");
+            throw new InvalidArgumentException("URL length can't be longer than 2048 characters.
+                                                Note, that precise url length check is guaranteed by using mb_string extension.
+                                                Make sure Your server allows the use of mbstring extension.");
         $tmp = array();
         $tmp['loc'] = $url;
         if (isset($lastModified)) $tmp['lastmod'] = $lastModified;
@@ -156,6 +160,8 @@ class SitemapGenerator {
         if (isset($priority)) $tmp['priority'] = $priority;
         $this->urls[] = $tmp;
     }
+        // vk edit Fixed minor spelling and grammar issues
+    
     /**
      * Create sitemap in memory.
      */
@@ -199,8 +205,8 @@ class SitemapGenerator {
 
         }
         if (sizeof($this->sitemaps) > 1000)
-            throw new LengthException("Sitemap index can contains 1000 single sitemaps.
-                Perhaps You trying to submit too many URLs.");
+            throw new LengthException("Sitemap index can contain 1000 single sitemaps.
+                Perhaps you're trying to submit too many URLs.");
         if (sizeof($this->sitemaps) > 1) {
             for($i=0; $i<sizeof($this->sitemaps); $i++) {
                 $this->sitemaps[$i] = array(
@@ -208,6 +214,8 @@ class SitemapGenerator {
                     $this->sitemaps[$i]
                 );
             }
+            // vk edit Fixed minor spelling and grammar issues
+            
             $xml = new SimpleXMLElement($sitemapIndexHeader);
             foreach($this->sitemaps as $sitemap) {
                 $row = $xml->addChild('sitemap');
